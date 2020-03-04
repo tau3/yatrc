@@ -1,2 +1,6 @@
 .vim
 env
+*.swp
+__pycache__/
+.mypy_cache
+*.pyc

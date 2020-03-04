@@ -1,11 +1,11 @@
-from picotui.context import Context
-from picotui.screen import Screen
 from picotui.widgets import *
 from picotui.defs import *
+from parser import Post
+from typing import List
 
-
-class MyListBox(WListBox):
-    def __init__(self, width, height, items):
+class PostsWidget(WListBox):
+    def __init__(self, width, height, items: List[str]):
+        items = list(items)
         super().__init__(width, height, items)
         self.default_style = (C_B_WHITE, C_GRAY)
         self.styles = [self.default_style] * len(items)
@@ -30,4 +30,3 @@ class MyListBox(WListBox):
         if key == KEY_ENTER:
             self.styles[self.cur_line] = (C_BLACK, C_GRAY)
         return super().handle_key(key)
-
