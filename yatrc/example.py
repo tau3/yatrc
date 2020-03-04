@@ -1,12 +1,12 @@
 from picotui.context import Context
 from picotui.screen import Screen
 from picotui.widgets import Dialog
-from widgets import PostsWidget, VerboseWidget
-import feed_parser
+from yatrc.widgets import PostsWidget, VerboseWidget
+import yatrc.feed_parser as fp
 
 
 def main():
-    posts = feed_parser.load_feed(
+    posts = fp.load_feed(
         "https://www.opennet.ru/opennews/opennews_all_utf.rss")
 
     with Context():
