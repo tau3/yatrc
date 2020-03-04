@@ -1,9 +1,10 @@
-from picotui.widgets import *
-from picotui.defs import *
-from parser import Post
 from typing import List
+from picotui.widgets import WListBox, WMultiEntry
+from picotui.defs import C_BLACK, C_B_WHITE, C_GRAY, \
+        C_WHITE, C_GREEN, KEY_ENTER
 
 
+# pylint: disable=too-many-ancestors
 class VerboseWidget(WMultiEntry):
     def __init__(self, width, height, lines):
         super().__init__(width, height, lines)
@@ -13,6 +14,7 @@ class VerboseWidget(WMultiEntry):
         if self.visible:
             super().redraw()
 
+
 class PostsWidget(WListBox):
     def __init__(self, width, height, items: List[str]):
         items = list(items)
@@ -20,11 +22,10 @@ class PostsWidget(WListBox):
         self.default_style = (C_B_WHITE, C_GRAY)
         self.styles = [self.default_style] * len(items)
         self.visible = False
-    
+
     def redraw(self):
         if self.visible:
             super().redraw()
-
 
     def show_line(self, line, i):
         hlite = self.cur_line == i
