@@ -5,7 +5,7 @@ from yatrc.widgets import PostsWidget, VerboseWidget
 import yatrc.feed_parser as fp
 
 
-def main():
+def main() -> None:
     posts = fp.load_feed(
         "https://www.opennet.ru/opennews/opennews_all_utf.rss")
 

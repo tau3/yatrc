@@ -13,7 +13,7 @@ class Post:
         return "[{}] {}".format(self.feed, self.title)
 
 
-def load_feed(url):
+def load_feed(url: str):
     data = feedparser.parse(url)  # pylint: disable=no-member
     entries = data["entries"]
     feed = data["feed"]
