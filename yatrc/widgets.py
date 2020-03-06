@@ -2,6 +2,8 @@ from typing import List
 from picotui.widgets import WListBox, WMultiEntry
 from picotui.defs import C_BLACK, C_B_WHITE, C_GRAY, \
         C_WHITE, C_GREEN, KEY_ENTER
+from picotui.screen import Screen
+from typing import Deque
 
 
 # pylint: disable=too-many-ancestors
@@ -16,12 +18,13 @@ class VerboseWidget(WMultiEntry):
 
 
 class PostsWidget(WListBox):
-    def __init__(self, width, height, items: List[str]):
-        items = list(items)
+    def __init__(self, items: List[str], actions: Deque):
+        width, height = Screen.screen_size()
         super().__init__(width, height, items)
         self.default_style = (C_B_WHITE, C_GRAY)
         self.styles = [self.default_style] * len(items)
         self.visible = False
+        self.actions = actions
 
     def redraw(self):
         if self.visible:
@@ -45,4 +48,5 @@ class PostsWidget(WListBox):
     def handle_key(self, key):
         if key == KEY_ENTER:
             self.styles[self.cur_line] = (C_BLACK, C_GRAY)
+            self.actions.append('verbose')
         return super().handle_key(key)

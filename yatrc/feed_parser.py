@@ -1,4 +1,5 @@
 import feedparser
+from typing import List
 
 
 # pylint: disable=too-few-public-methods
@@ -11,6 +12,9 @@ class Post:
 
     def list_view(self):
         return "[{}] {}".format(self.feed, self.title)
+
+    def verbose_view(self) -> List[str]:
+        return [self.list_view()]
 
 
 def load_feed(url: str):
