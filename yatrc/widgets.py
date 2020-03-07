@@ -50,4 +50,3 @@ class PostsWidget(WListBox):
             self.styles[self.cur_line] = (C_BLACK, C_GRAY)
             self.actions.append('verbose')
         return super().handle_key(key)
-

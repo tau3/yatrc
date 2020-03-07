@@ -3,8 +3,9 @@ from typing import Deque, List
 
 from picotui.context import Context
 from picotui.screen import Screen
-from yatrc.controller import Controller
+
 import yatrc.feed_parser as fp
+from yatrc.controller import Controller
 from yatrc.widgets import PostsWidget, VerboseWidget
 
 

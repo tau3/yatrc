@@ -1,22 +1,23 @@
-from yatrc.widgets import PostsWidget, VerboseWidget
 from typing import Deque, List
 
-from picotui.widgets import Dialog, WListBox, WMultiEntry
 from picotui.screen import Screen
+from picotui.widgets import Dialog, WListBox, WMultiEntry
+
 import yatrc.feed_parser as fp
+from yatrc.widgets import PostsWidget, VerboseWidget
 
 
-class Controller: 
+class Controller:
     def __init__(self, verbose_widget: VerboseWidget, list_widget: PostsWidget,
                  posts: List[fp.Post], actions: Deque[str]):
         self.verbose_widget = verbose_widget
         self.list_widget = list_widget
         self.posts = posts
         self.actions = actions
-        
+
         self._container = _WidgetContainer(self)
-        self._container.add(0,0, list_widget)
-        self._container.add(0,0, verbose_widget)
+        self._container.add(0, 0, list_widget)
+        self._container.add(0, 0, verbose_widget)
 
     def loop(self):
         self._container.loop()
@@ -32,6 +33,7 @@ class Controller:
                 self.list_widget.visible = False
                 return True
         return False
+
 
 class _WidgetContainer(Dialog):
     def __init__(self, controller):
