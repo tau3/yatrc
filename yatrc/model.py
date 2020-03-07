@@ -8,8 +8,9 @@ class Post:
         self.summary = summary
         self.feed = feed
 
-    def list_view(self):
+    def list_view(self) -> str:
         return "[{}] {}".format(self.feed, self.title)
 
     def verbose_view(self) -> List[str]:
-        return [self.list_view()]
+
+        return [self.list_view(), '', self.link, '', self.summary]

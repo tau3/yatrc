@@ -3,15 +3,18 @@ from typing import Deque, List
 from picotui.defs import (C_B_WHITE, C_BLACK, C_GRAY, C_GREEN, C_WHITE,
                           KEY_ENTER)
 from picotui.screen import Screen
-from picotui.widgets import WListBox, WMultiEntry
+from picotui.widgets import WListBox
+from picotui.editorext import Viewer
 
 
 # pylint: disable=too-many-ancestors
-class VerboseWidget(WMultiEntry):
+class VerboseWidget(Viewer):
     def __init__(self):
         width, height = Screen.screen_size()
-        super().__init__(width, height, [])
+        super().__init__(0, 0, width, height)
         self.is_visible = False
+        self.w = width  # pylint: disable=invalid-name
+        self.h = height  # pylint: disable=invalid-name
 
     def redraw(self):
         if self.is_visible:
