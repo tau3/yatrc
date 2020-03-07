@@ -19,12 +19,11 @@ def main() -> None:
     with Context():
         Screen.cls()
         Screen.attr_reset()
-        width, height = Screen.screen_size()
         list_widget = PostsWidget([post.list_view() for post in posts],
-                                  actions)
-        list_widget.visible = True
+                                  actions,
+                                  is_visible=True)
 
-        verbose_widget = VerboseWidget(width, height, ["hello", "world"])
+        verbose_widget = VerboseWidget()
 
         controller = Controller(verbose_widget, list_widget, posts, actions)
         controller.loop()

@@ -8,26 +8,27 @@ from picotui.widgets import WListBox, WMultiEntry
 
 # pylint: disable=too-many-ancestors
 class VerboseWidget(WMultiEntry):
-    def __init__(self, width, height, lines):
-        super().__init__(width, height, lines)
-        self.visible = False
+    def __init__(self):
+        width, height = Screen.screen_size()
+        super().__init__(width, height, [])
+        self.is_visible = False
 
     def redraw(self):
-        if self.visible:
+        if self.is_visible:
             super().redraw()
 
 
 class PostsWidget(WListBox):
-    def __init__(self, items: List[str], actions: Deque):
+    def __init__(self, items: List[str], actions: Deque, is_visible=True):
         width, height = Screen.screen_size()
         super().__init__(width, height, items)
-        self.default_style = (C_B_WHITE, C_GRAY)
-        self.styles = [self.default_style] * len(items)
-        self.visible = False
+        default_style = (C_B_WHITE, C_GRAY)
+        self.styles = [default_style] * len(items)
+        self.is_visible = is_visible
         self.actions = actions
 
     def redraw(self):
-        if self.visible:
+        if self.is_visible:
             super().redraw()
 
     def show_line(self, line, i):
