@@ -51,21 +51,3 @@ class PostsWidget(WListBox):
             self.actions.append('verbose')
         return super().handle_key(key)
 
-
-class WidgetContainer(Dialog):
-    def __init__(self, controller):
-        width, height = Screen.screen_size()
-        super().__init__(0, 0, width, height)
-        self.controller = controller
-
-    def loop(self):
-        self.redraw()
-        while True:
-            if self.controller.handle_action():
-                self.redraw()
-
-            key = self.get_input()
-            res = self.handle_input(key)
-
-            if res is not None and res is not True:
-                return res
