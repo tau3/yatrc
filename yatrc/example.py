@@ -1,3 +1,4 @@
+import asyncio
 from collections import deque
 from typing import Deque
 
@@ -9,9 +10,8 @@ from yatrc.controller import Controller
 from yatrc.view import PostsWidget, VerboseWidget
 
 
-def main() -> None:
-    posts = fp.load_feed(
-        "https://www.opennet.ru/opennews/opennews_all_utf.rss")
+async def main() -> None:
+    posts = await fp.load_all_feeds()
     posts = list(posts)
 
     actions = deque()  # type: Deque
@@ -30,4 +30,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
