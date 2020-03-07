@@ -1,5 +1,6 @@
-import feedparser
 from typing import List
+
+import feedparser
 
 
 # pylint: disable=too-few-public-methods

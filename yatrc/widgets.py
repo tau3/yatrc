@@ -1,9 +1,9 @@
-from typing import List
-from picotui.widgets import WListBox, WMultiEntry
-from picotui.defs import C_BLACK, C_B_WHITE, C_GRAY, \
-        C_WHITE, C_GREEN, KEY_ENTER
+from typing import Deque, List
+
+from picotui.defs import (C_B_WHITE, C_BLACK, C_GRAY, C_GREEN, C_WHITE,
+                          KEY_ENTER)
 from picotui.screen import Screen
-from typing import Deque
+from picotui.widgets import Dialog, WListBox, WMultiEntry
 
 
 # pylint: disable=too-many-ancestors
@@ -50,3 +50,22 @@ class PostsWidget(WListBox):
             self.styles[self.cur_line] = (C_BLACK, C_GRAY)
             self.actions.append('verbose')
         return super().handle_key(key)
+
+
+class WidgetContainer(Dialog):
+    def __init__(self, controller):
+        width, height = Screen.screen_size()
+        super().__init__(0, 0, width, height)
+        self.controller = controller
+
+    def loop(self):
+        self.redraw()
+        while True:
+            if self.controller.handle_action():
+                self.redraw()
+
+            key = self.get_input()
+            res = self.handle_input(key)
+
+            if res is not None and res is not True:
+                return res
