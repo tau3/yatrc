@@ -1,10 +1,10 @@
 from typing import Deque, List
 
 from picotui.screen import Screen
-from picotui.widgets import Dialog, WListBox, WMultiEntry
+from picotui.widgets import Dialog
 
 import yatrc.feed_parser as fp
-from yatrc.widgets import PostsWidget, VerboseWidget
+from yatrc.view import PostsWidget, VerboseWidget
 
 
 class Controller:
@@ -36,7 +36,7 @@ class Controller:
 
 
 class _WidgetContainer(Dialog):
-    def __init__(self, controller):
+    def __init__(self, controller: Controller):
         width, height = Screen.screen_size()
         super().__init__(0, 0, width, height)
         self.controller = controller

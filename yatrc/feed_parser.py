@@ -1,5 +1,3 @@
-from typing import List
-
 import feedparser
 
 from yatrc.model import Post

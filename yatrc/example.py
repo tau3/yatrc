@@ -1,12 +1,12 @@
 from collections import deque
-from typing import Deque, List
+from typing import Deque
 
 from picotui.context import Context
 from picotui.screen import Screen
 
 import yatrc.feed_parser as fp
 from yatrc.controller import Controller
-from yatrc.widgets import PostsWidget, VerboseWidget
+from yatrc.view import PostsWidget, VerboseWidget
 
 
 def main() -> None:

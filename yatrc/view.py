@@ -3,7 +3,7 @@ from typing import Deque, List
 from picotui.defs import (C_B_WHITE, C_BLACK, C_GRAY, C_GREEN, C_WHITE,
                           KEY_ENTER)
 from picotui.screen import Screen
-from picotui.widgets import Dialog, WListBox, WMultiEntry
+from picotui.widgets import WListBox, WMultiEntry
 
 
 # pylint: disable=too-many-ancestors
