@@ -9,16 +9,38 @@ from picotui.editorext import Viewer
 
 # pylint: disable=too-many-ancestors
 class VerboseWidget(Viewer):
-    def __init__(self):
+    def __init__(self, actions: Deque):
         width, height = Screen.screen_size()
         super().__init__(0, 0, width, height)
         self.is_visible = False
+        self.actions = actions
         self.w = width  # pylint: disable=invalid-name
         self.h = height  # pylint: disable=invalid-name
 
     def redraw(self):
         if self.is_visible:
             super().redraw()
+
+    def handle_key(self, key):
+        if key == KEY_ENTER:
+            self.actions.append('list')
+            return None
+        return super().handle_key(key)
+
+    def set_lines(self, lines: List[str]):
+        result = []
+        for line in lines:
+            if len(line) <= self.width:
+                result.append(line)
+            else:
+                chunked = _chunks(line, self.width)
+                result += chunked
+        super().set_lines(result)
+
+
+def _chunks(seq, length):
+    for i in range(0, len(seq), length):
+        yield seq[i:i + length]
 
 
 class PostsWidget(WListBox):

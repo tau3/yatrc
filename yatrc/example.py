@@ -23,7 +23,7 @@ async def main() -> None:
                                   actions,
                                   is_visible=True)
 
-        verbose_widget = VerboseWidget()
+        verbose_widget = VerboseWidget(actions)
 
         controller = Controller(verbose_widget, list_widget, posts, actions)
         controller.loop()

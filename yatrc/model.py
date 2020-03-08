@@ -12,5 +12,4 @@ class Post:
         return "[{}] {}".format(self.feed, self.title)
 
     def verbose_view(self) -> List[str]:
-
         return [self.list_view(), '', self.link, '', self.summary]

@@ -41,5 +41,9 @@ class Controller:
                 self.verbose_widget.is_visible = True
                 self.list_widget.is_visible = False
                 self._container.change_focus(self.verbose_widget)
-                return True
+            elif action == 'list':
+                self.verbose_widget.is_visible = False
+                self.list_widget.is_visible = True
+                self._container.change_focus(self.list_widget)
+            return True
         return False
