@@ -5,6 +5,7 @@ from picotui.defs import (C_B_WHITE, C_BLACK, C_GRAY, C_GREEN, C_WHITE,
 from picotui.screen import Screen
 from picotui.widgets import WListBox
 from picotui.editorext import Viewer
+from yatrc.model import Post
 
 
 # pylint: disable=too-many-ancestors
@@ -26,6 +27,14 @@ class VerboseWidget(Viewer):
             self.actions.append('list')
             return None
         return super().handle_key(key)
+
+    def set_post(self, post: Post):
+        self.set_lines(post.verbose_view())
+        self.top_line = 0
+        self.cur_line = 0
+        self.row = 0
+        self.adjust_cursor_eol()
+        self.redraw()
 
     def set_lines(self, lines: List[str]):
         result = []

@@ -37,7 +37,7 @@ class Controller:
             if action == 'verbose':
                 index = self.list_widget.cur_line
                 post = self.posts[index]
-                self.verbose_widget.set_lines(post.verbose_view())
+                self.verbose_widget.set_post(post)
                 self.verbose_widget.is_visible = True
                 self.list_widget.is_visible = False
                 self._container.change_focus(self.verbose_widget)
