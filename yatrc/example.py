@@ -20,8 +20,7 @@ async def main() -> None:
         Screen.cls()
         Screen.attr_reset()
         list_widget = PostsWidget([post.list_view() for post in posts],
-                                  actions,
-                                  is_visible=True)
+                                  actions)
 
         verbose_widget = VerboseWidget(actions)
 

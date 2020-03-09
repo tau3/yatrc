@@ -1,5 +1,6 @@
 from typing import Deque, List
 
+from picotui.defs import KEY_ENTER
 from picotui.screen import Screen
 from picotui.widgets import Dialog
 
@@ -20,6 +21,7 @@ class Controller:
         self._container.add(x=0, y=0, widget=list_widget)
         self._container.add(x=0, y=0, widget=verbose_widget)
         self._container.change_focus(self.list_widget)
+        self.verbose_widget.handle_key(KEY_ENTER)
 
     def loop(self):
         while True:
@@ -38,12 +40,8 @@ class Controller:
                 index = self.list_widget.cur_line
                 post = self.posts[index]
                 self.verbose_widget.set_post(post)
-                self.verbose_widget.is_visible = True
-                self.list_widget.is_visible = False
                 self._container.change_focus(self.verbose_widget)
             elif action == 'list':
-                self.verbose_widget.is_visible = False
-                self.list_widget.is_visible = True
                 self._container.change_focus(self.list_widget)
             return True
         return False
